@@ -1,0 +1,22 @@
+library(robotstxt)
+library(rvest)
+url <- "https://www.icc-cricket.com/rankings/mens/player-rankings/t20i/batting?at=2022-11-01"
+path = paths_allowed(url)
+#html from website
+web = read_html(url)
+View(web)
+positions <- web %>% html_nodes(".rankings-table__pos-number")%>% html_text()
+View(positions)
+player <- web %>%html_nodes(".name a") %>% html_text()
+View(player)
+team <- web%>%html_nodes(".table-body__logo-text") %>% html_text()
+View(team)
+rating <- web %>% html_nodes(".rating") %>% html_text()
+View(rating)
+
+#creating dataframe
+t20rankings <- data.frame(positions,player,team,rating)
+View(t20rankings)
+#save
+write.csv(t20rankings,"icct20.csv")
+Footer
