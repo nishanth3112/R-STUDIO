@@ -11,9 +11,9 @@ str(HR)
 # Datatype Conversion
 HR$RecruitmentSource <- as.factor(HR$RecruitmentSource)
 HR$MaritalDesc <- as.factor(HR$MaritalDesc)
-HR$CitizenDesc <- as.factor(HR$CitizenDesc)
+HR$PerfScoreID <- as.factor(HR$PerfScoreID)
 HR$EmploymentStatus <- as.factor(HR$EmploymentStatus)
-HR$PerformanceScore <- as.factor(HR$PerformanceScore)
+HR$State <- as.factor(HR$State)
 
 # Datatypes Recheck
 str(HR)
@@ -38,9 +38,9 @@ ggplot(HR, aes(x = EmpSatisfaction)) + theme_light() +
        title = "Satisfaction Score")
 
 # Density plot
-ggplot(HR, aes(x =CitizenDesc , fill =Department  )) + theme_bw() + 
-  facet_wrap(CitizenDesc~PerformanceScore ) + geom_density(alpha = 0.8) + 
-  labs(y= "CitizenDesc" ,x = "Employment Satisfaction", 
+ggplot(HR, aes(x =PerfScoreID , fill =Department  )) + theme_bw() + 
+  facet_wrap(PerfScoreID~State ) + geom_density(alpha = 0.8) + 
+  labs(y= "PerfScoreID" ,x = "Employment Satisfaction", 
        title = "Employment Satisfaction by citizenship, Status and Department")
 
 # Plot for Gender and martial status
@@ -58,13 +58,13 @@ ggplot(HR, aes(x = Sex)) + theme_light() +
 
 
 # Pie chart 
-ggplot(HR, aes(x = "", fill = RecruitmentSource)) + 
+ggplot(HR, aes(x = GenderID, fill = RecruitmentSource)) + 
   geom_bar(position = "fill") + 
   facet_grid(~Department) + coord_polar(theta = "y")
 
-# Box Plot for survival rate by age
-ggplot(HR, aes(x = CitizenDesc, y = EmploymentStatus)) + theme_bw() + 
+# Box Plot 
+ggplot(HR, aes(x = PerfScoreID, y = EmploymentStatus)) + theme_bw() + 
   geom_boxplot() + 
-  labs(y = "CitizenDesc", x = "EmploymentStatus", 
+  labs(y = "PerfScoreID", x = "EmploymentStatus", 
        title = "Citizenship and employment")
 
